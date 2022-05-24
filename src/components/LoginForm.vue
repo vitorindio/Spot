@@ -4,13 +4,11 @@
       <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
         <img src="@/assets/logotipo.svg" class="mx-auto md:ml-0" alt="Logotipo OWSE" />
         <p class="leading-relaxed mt-4 lg:text-3xl text-2xl lg:max-w-xl font-medium text-black text-center md:text-left">
-          <span class="text-owse-blue">SP</span>
-          <span class="text-owse-red">O</span>
-          <span class="text-owse-blue">T</span>
-          vai te ajudar a controlar suas horas de trabalho.
+          SPOT vai te ajudar a controlar suas horas de trabalho.
         </p>
       </div>
       <form class="lg:w-2/5 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col w-full">
+        <img src="@/assets/spot.svg" class="mx-auto mb-8 w-2/5" alt="Logotipo SPOT" />
         <div class="relative mb-4">
           <input
             name="email"
