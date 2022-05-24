@@ -15,7 +15,7 @@
           <input
             name="email"
             placeholder="E-mail"
-            class="w-full bg-white rounded border border-gray-300 focus:ring-2 focus:ring-indigo-200 text-lg outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            class="w-full bg-white rounded border border-gray-300 focus:ring-2 focus:ring-owse-blue text-lg outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             required
           />
         </div>
@@ -24,7 +24,7 @@
             type="password"
             name="password"
             placeholder="Senha"
-            class="w-full bg-white rounded border border-gray-300 focus:ring-2 focus:ring-indigo-200 outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            class="w-full bg-white rounded border border-gray-300 focus:ring-2 focus:ring-owse-blue outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             required
           />
         </div>
