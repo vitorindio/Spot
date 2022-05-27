@@ -15,7 +15,12 @@
             placeholder="E-mail"
             class="w-full bg-white rounded border border-gray-300 focus:ring-2 focus:ring-owse-blue text-lg outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             required
+            v-model="state.email"
           />
+          <!-- esse span, caso tenha um erro no campo, pega a mensagem do primeiro erro ( [0] ) e mostra pro usuario -->
+          <span v-if="v$.email.$error">
+            {{ v$.email.$errors[0].$message }}
+          </span>
         </div>
         <div class="relative mb-4">
           <input
@@ -24,9 +29,17 @@
             placeholder="Senha"
             class="w-full bg-white rounded border border-gray-300 focus:ring-2 focus:ring-owse-blue outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             required
+            v-model="state.password"
           />
+          <span v-if="v$.password.$error">
+            {{ v$.password.$errors[0].$message }}
+          </span>
         </div>
-        <button type="submit" class="text-white border-0 py-2 px-8 focus:outline-none font-medium rounded text-xl bg-owse-blue">
+        <button
+          type="submit"
+          class="text-white border-0 py-2 px-8 focus:outline-none font-medium rounded text-xl bg-owse-blue"
+          @click="submitForm"
+        >
           Entrar
         </button>
         <p class="text-sm text-owse-blue mt-3 text-center py-4">Esqueceu a senha?</p>
@@ -35,10 +48,4 @@
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'LoginForm'
-})
-</script>
+<script lang="ts" src="./LoginForm.ts"></script>
