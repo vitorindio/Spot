@@ -11,7 +11,8 @@ export default defineComponent({
       password: ''
     })
 
-    const mustBeOwse = (value: string) => value.includes('owse.com.br') //aqui ta obrigando a ser do tipo email : vitor@gmail.com ( pra poder submeter o form)
+    //aqui ta obrigando a ser do tipo email : vitor@gmail.com ( pra poder submeter o form)
+    const mustBeOwse = (value: string) => value.includes('owse.com.br')
 
     const rules = computed(() => {
       return {
@@ -35,11 +36,6 @@ export default defineComponent({
   methods: {
     submitForm() {
       this.v$.$validate()
-      if (!this.v$.$error) {
-        alert('Logado !')
-      } else {
-        alert('Erro de Login')
-      }
     }
   }
 })
