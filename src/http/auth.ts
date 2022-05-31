@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = `https://spot-api.up.railway.app/`
+const baseURL = `https://spot-api.up.railway.app`
 
 export default class AuthService {
   public static async login(email: string, password: string) {
