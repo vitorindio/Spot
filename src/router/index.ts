@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import AboutView from '../views/AboutView.vue'
 import DashboardView from '../views/DashboardView.vue'
-import LoginView from '../views/LoginView.vue'
+import LoginView from '../views/login-view/login-view.vue'
 import UserUpdate from '../views/user/user-update.vue'
 import UserView from '../views/user/user.vue'
 

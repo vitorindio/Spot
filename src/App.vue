@@ -5,6 +5,8 @@
     <router-link to="/">Home</router-link>
     |
     <router-link to="/about">About</router-link>
+    |
+    <router-link to="/user/new">Cadastrar Usuário</router-link>
   </nav>
   <router-view />
 </template>
@@ -19,7 +21,8 @@
 }
 
 nav {
-  padding: 30px;
+  padding: 10px;
+  text-align: right;
 }
 
 nav a {

@@ -1,80 +1,136 @@
 <template>
-  <div class="home">
-    <!-- <LoginForm /> -->
+  <div>
+    <Menu as="div" class="relative inline-block text-left">
+      <div>
+        <MenuButton
+          class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+        >
+          Options
+          <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+        </MenuButton>
+      </div>
+
+      <transition
+        enter-active-class="transition ease-out duration-100"
+        enter-from-class="transform opacity-0 scale-95"
+        enter-to-class="transform opacity-100 scale-100"
+        leave-active-class="transition ease-in duration-75"
+        leave-from-class="transform opacity-100 scale-100"
+        leave-to-class="transform opacity-0 scale-95"
+      >
+        <MenuItems
+          class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+        >
+          <div class="py-1">
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Account settings</a>
+            </MenuItem>
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Support</a>
+            </MenuItem>
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">License</a>
+            </MenuItem>
+            <form method="POST" action="#">
+              <MenuItem v-slot="{ active }">
+                <button
+                  type="submit"
+                  :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full text-left px-4 py-2 text-sm']"
+                >
+                  Sign out
+                </button>
+              </MenuItem>
+            </form>
+          </div>
+        </MenuItems>
+      </transition>
+    </Menu>
   </div>
-  <form class="w-full max-w-lg">
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">First Name</label>
-        <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-          id="grid-first-name"
-          type="text"
-          placeholder="Jane"
-        />
-        <p class="text-red-500 text-xs italic">Please fill out this field.</p>
-      </div>
-      <div class="w-full md:w-1/2 px-3">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">Last Name</label>
-        <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="grid-last-name"
-          type="text"
-          placeholder="Doe"
-        />
-      </div>
-    </div>
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full px-3">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">Password</label>
-        <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="grid-password"
-          type="password"
-          placeholder="******************"
-        />
-        <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
-      </div>
-    </div>
-    <div class="flex flex-wrap -mx-3 mb-2">
-      <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">City</label>
-        <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="grid-city"
-          type="text"
-          placeholder="Albuquerque"
-        />
-      </div>
-      <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">State</label>
-        <div class="relative">
-          <select
-            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-state"
-          >
-            <option>New Mexico</option>
-            <option>Missouri</option>
-            <option>Texas</option>
-          </select>
-          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-            </svg>
+
+  <section class="text-gray-600 body-font bg-gray-100">
+    <div class="container h-screen xl:px-32 p-16 py-48 mx-auto flex flex-wrap justify-center items-center">
+      <form class="lg:w-2/5 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col w-full">
+        <div class="form-group mb-3 input-group">
+          <label class="block text-sm font-medium text-gray-700 text-left" for="email">Nome Completo</label>
+          <div class="form-group mb-1">
+            <input
+              type="text"
+              placeholder="Placeholder"
+              class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:ring-2 focus:ring-owse-blue focus:outline-none grid place-items-center"
+            />
           </div>
         </div>
-      </div>
-      <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">Zip</label>
-        <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="grid-zip"
-          type="text"
-          placeholder="90210"
-        />
-      </div>
+        <div class="form-group mb-4">
+          <label class="block text-sm font-medium text-gray-700 text-left" for="email">Email</label>
+          <input
+            :disabled="hasToken"
+            type="email"
+            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:ring-2 focus:ring-owse-blue focus:outline-none"
+            id="exampleInput125"
+            placeholder="Email address"
+          />
+        </div>
+        <div class="form-group mb-4">
+          <label class="block text-sm font-medium text-gray-700 text-left" for="email">Senha</label>
+          <input
+            type="password"
+            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:ring-2 focus:ring-owse-blue focus:outline-none"
+            id="exampleInput125"
+            placeholder="Email address"
+          />
+        </div>
+        <div class="form-group mb-4">
+          <label class="block text-sm font-medium text-gray-700 text-left" for="email">Telefone</label>
+          <input
+            type="password"
+            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:ring-2 focus:ring-owse-blue focus:outline-none"
+            id="exampleInput125"
+            placeholder="Email address"
+          />
+        </div>
+        <div class="form-group mb-4">
+          <label class="block text-sm font-medium text-gray-700 text-left" for="email">Tipo de Usuário</label>
+          <select
+            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:ring-2 focus:ring-owse-blue focus:outline-none"
+            id="grid-state"
+          >
+            <option>Administrador</option>
+            <option>Colaborador</option>
+          </select>
+        </div>
+        <button
+          type="submit"
+          class="w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none font-medium rounded text-xl bg-owse-blue active:shadow-lg transition duration-150 ease-in-out"
+        >
+          Cadastrar
+        </button>
+      </form>
     </div>
-  </form>
+  </section>
 </template>
 
-<script lang="ts" src="./user-update.ts"></script>
+<script lang="ts">
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
+import { ChevronDownIcon } from '@heroicons/vue/solid'
+import { defineComponent } from '@vue/runtime-core'
+
+export default defineComponent({
+  components: {
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
+    ChevronDownIcon
+  },
+  data() {
+    return {
+      hasToken: false
+    }
+  },
+  methods: {
+    toggleMenu() {
+      this.$refs.menu.toggle()
+    }
+  }
+})
+</script>
