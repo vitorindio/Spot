@@ -7,7 +7,7 @@
           SPOT vai te ajudar a controlar suas horas de trabalho.
         </p>
       </div>
-      <form class="lg:w-2/5 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col w-full">
+      <form @submit.prevent="login" class="lg:w-2/5 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col w-full">
         <img src="@/assets/spot.svg" class="mx-auto mb-8 w-2/5" alt="Logotipo SPOT" />
         <div class="relative mb-4">
           <input
@@ -29,6 +29,9 @@
               </svg>
             </span>
           </div>
+          <span v-if="v$.email.$error">
+            {{ v$.email.$errors[0].$message }}
+          </span>
         </div>
         <div class="relative mb-4">
           <input
@@ -54,8 +57,9 @@
         <button
           type="submit"
           class="text-white border-0 py-2 px-8 focus:outline-none font-medium rounded text-xl bg-owse-blue"
-          @click.prevent="submitForm"
-        >
+          @click.prevent="login"
+        />
+        <button type="submit" class="text-white border-0 py-2 px-8 focus:outline-none font-medium rounded text-xl bg-owse-blue">
           Entrar
         </button>
         <p class="text-sm text-owse-blue mt-3 text-center py-4">Esqueceu a senha?</p>
@@ -64,4 +68,52 @@
   </section>
 </template>
 
-<script lang="ts" src="./LoginForm.ts"></script>
+<script lang="ts">
+import useValidate from '@vuelidate/core'
+import { email, helpers, minLength, required } from '@vuelidate/validators'
+import { computed, defineComponent, reactive } from 'vue'
+import AuthService from '@/services/auth'
+
+export default defineComponent({
+  name: 'LoginForm',
+  setup() {
+    const state = reactive({
+      email: '',
+      password: ''
+    })
+
+    const mustBeOwse = (value: string) => value.includes('owse.com.br')
+
+    const rules = computed(() => {
+      return {
+        email: {
+          required,
+          email,
+          mustBeOwse: helpers.withMessage('Utilize um email OWSE', mustBeOwse)
+        },
+        password: { required, minLength: minLength(3) }
+      }
+    })
+
+    const v$ = useValidate(rules, state)
+
+    return { state, v$ }
+  },
+  methods: {
+    login() {
+      this.v$.$validate()
+
+      AuthService.login(this.state.email, this.state.password)
+        .then((res) => {
+          console.log(res) // {"type":"bearer","token":"Nw.3ce8CFIJhUiriD0VPG8VGFpHAP46yenRqUafdWXyjSwlBotSzn2jr5kLIAYy","expires_at":"2022-06-30T22:01:11.324+00:00"}
+          this.$router.push('/')
+        })
+        .catch((err) => {
+          console.error(err)
+          // TODO: verificar vue-toast-notification
+          // this.$toast.error('Usuário ou senha inválidos')
+        })
+    }
+  }
+})
+</script>

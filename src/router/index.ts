@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory, RouteRecordRaw, useRoute } from 'vue-router'
-import LoginView from '../views/login-view/login-view.vue'
-//import HomeView from '../views/home-view/home-view.vue'
-import UserView from '../views/user/user.vue'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import AboutView from '../views/AboutView.vue'
+import DashboardView from '../views/DashboardView.vue'
+import LoginView from '../views/LoginView.vue'
 import UserUpdate from '../views/user/user-update.vue'
+import UserView from '../views/user/user.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,11 +11,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'login',
     component: LoginView
   },
-  // {
-  //   path: '/home-view',
-  //   name: 'home',
-  //   component: HomeView
-  // },
   {
     path: '/user',
     name: 'User',
@@ -33,10 +29,16 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: AboutView
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
+  },
+  {
+    path: '/',
+    name: 'dashboard',
+    component: DashboardView
   }
 ]
 
