@@ -47,7 +47,7 @@
 import useValidate from '@vuelidate/core'
 import { email, helpers, minLength, required } from '@vuelidate/validators'
 import { computed, defineComponent, reactive } from 'vue'
-import AuthService from '@/http/auth'
+import AuthService from '@/services/auth'
 
 export default defineComponent({
   name: 'LoginForm',
