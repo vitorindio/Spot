@@ -7,7 +7,10 @@
           SPOT vai te ajudar a controlar suas horas de trabalho.
         </p>
       </div>
-      <form @submit.prevent="login" class="lg:w-2/5 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col w-full">
+      <form
+        @submit.prevent="store.login(state.email, state.password)"
+        class="lg:w-2/5 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col w-full"
+      >
         <img src="@/assets/spot.svg" class="mx-auto mb-8 w-2/5" alt="Logotipo SPOT" />
         <div class="relative mb-4">
           <input
@@ -44,14 +47,16 @@
 </template>
 
 <script lang="ts">
+import { useUserStore } from '@/stores/user'
 import useValidate from '@vuelidate/core'
 import { email, helpers, minLength, required } from '@vuelidate/validators'
 import { computed, defineComponent, reactive } from 'vue'
-import AuthService from '@/services/auth'
 
 export default defineComponent({
   name: 'LoginForm',
   setup() {
+    const store = useUserStore()
+
     const state = reactive({
       email: '',
       password: ''
@@ -72,23 +77,7 @@ export default defineComponent({
 
     const v$ = useValidate(rules, state)
 
-    return { state, v$ }
-  },
-  methods: {
-    login() {
-      this.v$.$validate()
-
-      AuthService.login(this.state.email, this.state.password)
-        .then((res) => {
-          console.log(res) // {"type":"bearer","token":"Nw.3ce8CFIJhUiriD0VPG8VGFpHAP46yenRqUafdWXyjSwlBotSzn2jr5kLIAYy","expires_at":"2022-06-30T22:01:11.324+00:00"}
-          this.$router.push('/')
-        })
-        .catch((err) => {
-          console.error(err)
-          // TODO: verificar vue-toast-notification
-          // this.$toast.error('Usuário ou senha inválidos')
-        })
-    }
+    return { store, state, v$ }
   }
 })
 </script>

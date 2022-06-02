@@ -7,17 +7,22 @@ export default class AuthService {
     return await axios
       .post(`${baseURL}/auth`, { email, password })
       .then((response) => response.data)
-      .catch((error) => error.response.data)
+      .catch((error) => {
+        throw new Error(error.response.data)
+      })
   }
 
-  public static async logout() {
-    return await axios
+  public static async logout(token: string | null) {
+    await axios
       .delete(`${baseURL}/auth`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
         }
       })
       .then((response) => response.data)
-      .catch((error) => error.response.data)
+      .catch((error) => {
+        throw new Error(error.response.data)
+      })
   }
 }

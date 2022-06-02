@@ -13,11 +13,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useCounter } from '@/stores/counter'
+import { useCounterStore } from '@/stores/counter'
 
 export default defineComponent({
   setup() {
-    const store = useCounter()
+    const store = useCounterStore()
     return { store }
   }
 })
