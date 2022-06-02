@@ -22,7 +22,7 @@ export const useUserStore = defineStore('user', {
           return router.push('/')
         })
         .catch((error) => {
-          Notify.create(`ERRO: ${error.message}`)
+          Notify.create(`ERRO: ${error}`)
           this.token = null
           throw error
         })
