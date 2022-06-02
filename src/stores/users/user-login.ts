@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 import { Cookies } from 'quasar'
 import { Notify } from 'quasar'
 
-export const useUserStore = defineStore('user', {
+export const useUserLoginStore = defineStore('user', {
   state: () => ({
     token: Cookies.get('token') || null
   }),
@@ -28,8 +28,8 @@ export const useUserStore = defineStore('user', {
         })
     },
 
-    logout() {
-      AuthService.logout(this.token)
+    async logout() {
+      await AuthService.logout(this.token)
         .then(() => {
           this.token = null
           Cookies.remove('token')

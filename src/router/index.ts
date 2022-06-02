@@ -1,12 +1,21 @@
-import { useUserStore } from '@/stores/user'
+import { useUserLoginStore } from '@/stores/users/user-login'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import AboutView from '../views/AboutView.vue'
 import DashboardView from '../views/DashboardView.vue'
-import LoginView from '../views/login-view/login-view.vue'
-import UserUpdate from '../views/user/user-update.vue'
-import UserView from '../views/user/user.vue'
+import LoginView from '../views/LoginView.vue'
+import UserUpdate from '../views/user/UserUpdateView.vue'
+import UserView from '../views/user/UserView.vue'
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
+  },
+  {
+    path: '/',
+    name: 'dashboard',
+    component: DashboardView
+  },
   {
     path: '/login',
     name: 'login',
@@ -31,15 +40,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/about',
     name: 'about',
     component: AboutView
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/'
-  },
-  {
-    path: '/',
-    name: 'dashboard',
-    component: DashboardView
   }
 ]
 
@@ -49,7 +49,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const store = useUserStore()
+  const store = useUserLoginStore()
   console.log('isAuthenticated:', store.isAuthenticated)
 
   if (to.name !== 'login' && !store.isAuthenticated) return next({ name: 'login' })

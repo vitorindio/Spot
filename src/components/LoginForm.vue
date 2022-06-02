@@ -57,11 +57,7 @@
             </span>
           </div>
         </div>
-        <button
-          type="submit"
-          class="text-white border-0 py-2 px-8 focus:outline-none font-medium rounded text-xl bg-owse-blue"
-          @click.prevent="login"
-        >
+        <button type="submit" class="text-white border-0 py-2 px-8 focus:outline-none font-medium rounded text-xl bg-owse-blue">
           Entrar
         </button>
         <p class="text-sm text-owse-blue mt-3 text-center py-4">Esqueceu a senha?</p>
@@ -71,7 +67,7 @@
 </template>
 
 <script lang="ts">
-import { useUserStore } from '@/stores/user'
+import { useUserLoginStore } from '@/stores/users/user-login'
 import useValidate from '@vuelidate/core'
 import { email, helpers, minLength, required } from '@vuelidate/validators'
 import { computed, defineComponent, reactive } from 'vue'
@@ -79,7 +75,7 @@ import { computed, defineComponent, reactive } from 'vue'
 export default defineComponent({
   name: 'LoginForm',
   setup() {
-    const store = useUserStore()
+    const store = useUserLoginStore()
 
     const state = reactive({
       email: '',

@@ -8,12 +8,12 @@
 </template>
 
 <script lang="ts">
-import { useUserStore } from '@/stores/user'
+import { useUserLoginStore } from '@/stores/users/user-login'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   setup() {
-    const store = useUserStore()
+    const store = useUserLoginStore()
     return { store }
   }
 })
