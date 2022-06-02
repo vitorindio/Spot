@@ -1,5 +1,24 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="flex flex-col h-screen">
+    <h1 class="mx-auto">Página Sobre</h1>
+    <div class="m-auto">
+      <p>State: {{ store.counter }}</p>
+      <p>Getter * 2: {{ store.doubleCount }}</p>
+      <button @click="store.increment()">Incrementar</button>
+      <hr />
+      <router-link to="/dashboard" class="mx-auto">Ir para Dashboard</router-link>
+    </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { useCounterStore } from '@/stores/counter'
+
+export default defineComponent({
+  setup() {
+    const store = useCounterStore()
+    return { store }
+  }
+})
+</script>
