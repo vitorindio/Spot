@@ -6,44 +6,52 @@
           <label class="block text-sm font-medium text-gray-700 text-left" for="email">Nome Completo</label>
           <div class="form-group mb-1">
             <input
+              id="fullname"
               type="text"
-              placeholder="Placeholder"
+              placeholder="Joao Silva das Neves"
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:ring-2 focus:ring-owse-blue focus:outline-none grid place-items-center"
             />
           </div>
         </div>
         <div class="form-group mb-4">
-          <label class="block text-sm font-medium text-gray-700 text-left" for="email">Email</label>
+          <label class="block text-sm font-medium text-gray-700 text-left" for="email">Email ( OWSE )</label>
           <input
-            type="email"
+            type="text"
             class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:ring-2 focus:ring-owse-blue focus:outline-none"
-            id="exampleInput125"
-            placeholder="Email address"
+            id="email"
+            placeholder="email@owse.com.br"
           />
         </div>
         <div class="form-group mb-4">
-          <label class="block text-sm font-medium text-gray-700 text-left" for="email">Senha</label>
+          <q-btn color="primary">
+            <q-tooltip transition-show="scale" transition-hide="scale">A senha deve conter no mínimo 6 caracteres</q-tooltip>
+          </q-btn>
+          <label class="block text-sm font-medium text-gray-700 text-left" for="password">Senha</label>
           <input
+            id="password"
             type="password"
             class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:ring-2 focus:ring-owse-blue focus:outline-none"
-            id="exampleInput125"
-            placeholder="Email address"
+            placeholder="******"
           />
         </div>
         <div class="form-group mb-4">
-          <label class="block text-sm font-medium text-gray-700 text-left" for="email">Telefone</label>
-          <input
-            type="password"
+          <q-btn color="primary">
+            <q-tooltip transition-show="scale" transition-hide="scale">apenas números</q-tooltip>
+          </q-btn>
+          <label class="block text-sm font-medium text-gray-700 text-left" for="phone">Telefone/Celular</label>
+          <the-mask
+            mask="##.###.###/####-##"
+            id="phone"
+            type="text"
             class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:ring-2 focus:ring-owse-blue focus:outline-none"
-            id="exampleInput125"
-            placeholder="Email address"
+            placeholder="(00) 00000-0000"
           />
         </div>
         <div class="form-group mb-4">
-          <label class="block text-sm font-medium text-gray-700 text-left" for="email">Tipo de Usuário</label>
+          <label class="block text-sm font-medium text-gray-700 text-left" for="usertype">Tipo do Usuário</label>
           <select
+            id="usertype"
             class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:ring-2 focus:ring-owse-blue focus:outline-none"
-            id="grid-state"
           >
             <option>Administrador</option>
             <option>Colaborador</option>
@@ -65,5 +73,15 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'UserUpdate'
+
+  // methods: {
+  //   helpMessage() {
+  //     return {
+  //       color: 'primary',
+  //       textColor: 'white',
+  //       message: 'A senha deve ser de no mínimo 6 caracteres'
+  //     }
+  //   }
+  // }
 })
 </script>
