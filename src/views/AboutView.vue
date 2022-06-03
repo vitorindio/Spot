@@ -1,14 +1,14 @@
 <template>
-  <div class="flex flex-col h-screen">
-    <h1 class="mx-auto">Página Sobre</h1>
-    <div class="m-auto">
+  <section>
+    <h1>Sobre</h1>
+    <div>
       <p>State: {{ store.counter }}</p>
       <p>Getter * 2: {{ store.doubleCount }}</p>
       <button @click="store.increment()">Incrementar</button>
       <hr />
-      <router-link to="/dashboard" class="mx-auto">Ir para Dashboard</router-link>
+      <router-link to="/dashboard">Ir para Dashboard</router-link>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
