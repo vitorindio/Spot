@@ -54,6 +54,7 @@ router.beforeEach((to, from, next) => {
 
   if (to.name !== 'login' && !store.isAuthenticated) return next({ name: 'login' })
   if (to.name === 'login' && store.isAuthenticated) return next({ name: 'dashboard' })
+
   return next()
 })
 

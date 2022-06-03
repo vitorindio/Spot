@@ -6,6 +6,10 @@ import lang from 'quasar/lang/pt-BR.js'
 
 export default {
   config: {
+    brand: {
+      primary: '#0F6DB8',
+      accent: '#EB5723'
+    },
     notify: {
       html: true,
       position: 'top',
