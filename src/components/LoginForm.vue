@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { useUserStore } from '@/stores/user'
+import { useUserLoginStore } from '@/stores/users/user-login'
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
