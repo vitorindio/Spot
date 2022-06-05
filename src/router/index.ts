@@ -1,7 +1,10 @@
+import { useUserLoginStore } from '@/stores/users/user-login'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import LoginView from '../views/LoginView.vue'
 import AboutView from '../views/AboutView.vue'
 import DashboardView from '../views/DashboardView.vue'
+import LoginView from '../views/LoginView.vue'
+import UserUpdate from '../views/user/UserUpdateView.vue'
+import UserView from '../views/user/UserView.vue'
 import StatusView from '../views/StatusView.vue'
 import { useUserStore } from '@/stores/user'
 
@@ -21,6 +24,21 @@ const routes: Array<RouteRecordRaw> = [
     component: LoginView
   },
   {
+    path: '/user',
+    name: 'User',
+    component: UserView
+  },
+  {
+    path: '/user/new',
+    name: 'UserCreate',
+    component: UserUpdate
+  },
+  {
+    path: '/user/:userId/edit',
+    name: 'UserEdit',
+    component: UserUpdate
+  },
+  {
     path: '/about',
     name: 'about',
     component: AboutView
@@ -38,7 +56,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const store = useUserStore()
+  const store = useUserLoginStore()
+  console.log('isAuthenticated:', store.isAuthenticated)
 
   if (to.name !== 'login' && !store.isAuthenticated) return next({ name: 'login' })
   if (to.name === 'login' && store.isAuthenticated) return next({ name: 'dashboard' })

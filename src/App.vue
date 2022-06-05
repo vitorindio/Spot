@@ -1,8 +1,12 @@
 <template>
-  <nav v-show="false">
-    <router-link to="/">Home</router-link>
+  <nav v-show="true">
+    <router-link to="/login">Login</router-link>
+    |
+    <router-link to="/">Dashboard</router-link>
     |
     <router-link to="/about">About</router-link>
+    |
+    <router-link to="/user/new">Cadastrar Usuário</router-link>
   </nav>
   <router-view />
 </template>
@@ -16,6 +20,18 @@
   color: #2c3e50;
 }
 
+nav {
+  padding: 10px;
+  text-align: right;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 .body--light {
   background-color: var(--q-light);
 }

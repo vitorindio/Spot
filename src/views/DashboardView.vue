@@ -17,6 +17,7 @@
 </template>
 
 <script lang="ts">
+import { useUserLoginStore } from '@/stores/users/user-login'
 import AdminDash from '@/components/AdminDash.vue'
 import { useUserStore } from '@/stores/user'
 import { defineComponent } from 'vue'
@@ -24,7 +25,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   components: { AdminDash },
   setup() {
-    const store = useUserStore()
+    const store = useUserLoginStore()
     return { store }
   }
 })
