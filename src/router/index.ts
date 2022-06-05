@@ -5,6 +5,8 @@ import DashboardView from '../views/DashboardView.vue'
 import LoginView from '../views/LoginView.vue'
 import UserUpdate from '../views/user/UserUpdateView.vue'
 import UserView from '../views/user/UserView.vue'
+import StatusView from '../views/StatusView.vue'
+import { useUserStore } from '@/stores/user'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -40,6 +42,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/about',
     name: 'about',
     component: AboutView
+  },
+  {
+    path: '/status',
+    name: 'status',
+    component: StatusView
   }
 ]
 

@@ -8,8 +8,10 @@ export default {
   config: {
     brand: {
       primary: '#0F6DB8',
-      accent: '#EB5723'
+      accent: '#EB5723',
+      light: '#eceff1'
     },
+    dark: 'auto',
     notify: {
       html: true,
       position: 'top',

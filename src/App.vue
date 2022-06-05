@@ -32,5 +32,7 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+.body--light {
+  background-color: var(--q-light);
 }
 </style>
