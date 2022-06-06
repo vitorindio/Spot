@@ -24,7 +24,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/forgot-password',
     component: ForgotPasswordView,
-    meta: { requiresAuth: false }
+    meta: { requiresAuth: false },
+    children: [{ path: '/forgot-password/:key', component: ForgotPasswordView }]
   },
   {
     path: '/user',
@@ -49,7 +50,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/status',
     component: StatusView,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: false }
   }
 ]
 
