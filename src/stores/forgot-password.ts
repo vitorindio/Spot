@@ -5,7 +5,9 @@ import { Notify } from 'quasar'
 
 export const useForgotPasswordStore = defineStore('forgot-password', {
   state: () => ({
-    email: ''
+    email: '',
+    password: '',
+    passwordConfirmation: ''
   }),
 
   actions: {
