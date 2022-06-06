@@ -1,15 +1,28 @@
 <template>
-  <nav v-show="true">
-    <router-link to="/login">Login</router-link>
-    |
+  <nav v-show="store.isAuthenticated">
     <router-link to="/">Dashboard</router-link>
     |
     <router-link to="/about">About</router-link>
     |
     <router-link to="/user/new">Cadastrar Usuário</router-link>
+    |
+    <router-link to="/login" @click="store.logout()">Logout</router-link>
   </nav>
   <router-view />
 </template>
+
+<script>
+import { defineComponent } from 'vue'
+import { useAuthStore } from '@/stores'
+
+export default defineComponent({
+  setup() {
+    const store = useAuthStore()
+
+    return { store }
+  }
+})
+</script>
 
 <style>
 #app {
@@ -20,18 +33,6 @@
   color: #2c3e50;
 }
 
-nav {
-  padding: 10px;
-  text-align: right;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
 .body--light {
   background-color: var(--q-light);
 }
