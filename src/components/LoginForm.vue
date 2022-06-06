@@ -1,5 +1,5 @@
 <template>
-  <q-form @submit.prevent="store.login(email, password)" class="bg-white q-gutter-y-sm q-pa-lg">
+  <q-form @submit.prevent="this.store.login(this.email, this.password)" class="bg-white q-gutter-y-sm q-pa-lg">
     <img src="@/assets/spot.svg" alt="Logotipo SPOT" class="q-mx-auto q-mb-lg q-px-xl" style="height: 40px" />
     <q-input filled v-model="email" type="email" label="E-mail" name="email" required :rules="mailRules" lazy-rules />
     <q-input
@@ -16,19 +16,18 @@
         <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer" @click="isPwd = !isPwd" />
       </template>
     </q-input>
-    <q-btn label="Entrar" type="submit" color="primary" class="full-width" />
-    <router-link to="#" class="block q-mt-sm text-primary">Esqueceu a senha?</router-link>
+    <q-btn label="Entrar" type="submit" color="primary" class="full-width q-mb-sm" />
+    <router-link to="/forgot-password" size="sm">Esqueceu a senha?</router-link>
   </q-form>
 </template>
 
 <script lang="ts">
-import { useUserLoginStore } from '@/stores/users/user-login'
+import { useAuthStore } from '@/stores'
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
-  name: 'LoginForm',
   setup() {
-    const store = useUserLoginStore()
+    const store = useAuthStore()
 
     return {
       store,
