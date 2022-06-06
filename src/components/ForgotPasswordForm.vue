@@ -1,5 +1,5 @@
 <template>
-  <q-form autofocus class="bg-white q-gutter-y-sm q-pa-lg">
+  <q-form autofocus @submit.prevent="onSubmit" class="bg-white q-gutter-y-sm q-pa-lg">
     <img src="@/assets/spot.svg" alt="Logotipo SPOT" class="q-mx-auto q-mb-lg q-px-xl" style="height: 40px" />
     <q-input
       filled
@@ -18,7 +18,7 @@
       v-model="password"
       :type="isPwd ? 'password' : 'text'"
       label="Nova senha"
-      :rules="[(val) => val.length >= 6 || 'A senha deve ter no mínimo 6 caracteres']"
+      :rules="[(val) => !userKey || val.length >= 6 || 'A senha deve ter no mínimo 6 caracteres']"
       lazy-rules
     >
       <template v-slot:append>
@@ -31,10 +31,10 @@
       v-model="passwordConfirmation"
       :type="isPwd ? 'password' : 'text'"
       label="Confirmação"
-      :rules="[(val) => val === store.password || 'As senhas não conferem']"
+      :rules="[(val) => !userKey || val.includes(store.password) || 'As senhas não conferem']"
       lazy-rules
     />
-    <q-btn @click.once="onSubmit()" :label="userKey ? 'Redefinir' : 'Recuperar'" color="primary" class="full-width q-mb-sm" />
+    <q-btn :label="userKey ? 'Redefinir' : 'Recuperar'" type="submit" color="primary" class="full-width q-mb-sm" />
     <router-link v-show="!userKey" userKey to="/login" size="sm">Voltar para Login</router-link>
   </q-form>
 </template>
