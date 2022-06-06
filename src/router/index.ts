@@ -1,52 +1,55 @@
-import { useUserLoginStore } from '@/stores/users/user-login'
+import { useAuthStore } from '@/stores'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import AboutView from '../views/AboutView.vue'
 import DashboardView from '../views/DashboardView.vue'
+import ForgotPasswordView from '../views/ForgotPasswordView.vue'
 import LoginView from '../views/LoginView.vue'
+import StatusView from '../views/StatusView.vue'
 import UserUpdate from '../views/user/UserUpdateView.vue'
 import UserView from '../views/user/UserView.vue'
-import StatusView from '../views/StatusView.vue'
-import { useUserStore } from '@/stores/user'
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/'
-  },
+  { path: '/:pathMatch(.*)*', redirect: '/' },
   {
     path: '/',
-    name: 'dashboard',
-    component: DashboardView
+    alias: '/dashboard',
+    component: DashboardView,
+    meta: { requiresAuth: true }
   },
   {
     path: '/login',
-    name: 'login',
-    component: LoginView
+    component: LoginView,
+    meta: { requiresAuth: false }
+  },
+  {
+    path: '/forgot-password',
+    component: ForgotPasswordView,
+    meta: { requiresAuth: false }
   },
   {
     path: '/user',
-    name: 'User',
-    component: UserView
+    component: UserView,
+    meta: { requiresAuth: true }
   },
   {
     path: '/user/new',
-    name: 'UserCreate',
-    component: UserUpdate
+    component: UserUpdate,
+    meta: { requiresAuth: true }
   },
   {
     path: '/user/:userId/edit',
-    name: 'UserEdit',
-    component: UserUpdate
+    component: UserUpdate,
+    meta: { requiresAuth: true }
   },
   {
     path: '/about',
-    name: 'about',
-    component: AboutView
+    component: AboutView,
+    meta: { requiresAuth: true }
   },
   {
     path: '/status',
-    name: 'status',
-    component: StatusView
+    component: StatusView,
+    meta: { requiresAuth: true }
   }
 ]
 
@@ -56,11 +59,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const store = useUserLoginStore()
-  console.log('isAuthenticated:', store.isAuthenticated)
+  const store = useAuthStore()
 
-  if (to.name !== 'login' && !store.isAuthenticated) return next({ name: 'login' })
-  if (to.name === 'login' && store.isAuthenticated) return next({ name: 'dashboard' })
+  if (to.meta.requiresAuth && !store.isAuthenticated) return next({ path: '/login' })
+  if (!to.meta.requiresAuth && store.isAuthenticated) return next({ path: '/dashboard' })
 
   return next()
 })
