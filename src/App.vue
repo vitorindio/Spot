@@ -11,7 +11,7 @@
   <router-view />
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import { useAuthStore } from '@/stores'
 
@@ -35,5 +35,19 @@ export default defineComponent({
 
 .body--light {
   background-color: var(--q-light);
+}
+
+nav {
+  padding: 10px;
+  text-align: right;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>Sobre</h1>
+    <h1 class="fontSize">Sobre</h1>
     <div>
       <p>State: {{ store.counter }}</p>
       <p>Getter * 2: {{ store.doubleCount }}</p>
@@ -22,3 +22,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+.fontSize {
+  font-size: xx-large;
+}
+</style>
