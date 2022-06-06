@@ -1,5 +1,5 @@
 <template>
-  <q-form autofocus @submit.prevent="onSubmit" class="bg-white q-gutter-y-sm q-pa-lg">
+  <q-form autofocus class="bg-white q-gutter-y-sm q-pa-lg">
     <img src="@/assets/spot.svg" alt="Logotipo SPOT" class="q-mx-auto q-mb-lg q-px-xl" style="height: 40px" />
     <q-input
       filled
@@ -34,7 +34,7 @@
       :rules="[(val) => val === store.password || 'As senhas não conferem']"
       lazy-rules
     />
-    <q-btn type="submit" :label="userKey ? 'Redefinir' : 'Recuperar'" color="primary" class="full-width q-mb-sm" />
+    <q-btn @click.once="onSubmit()" :label="userKey ? 'Redefinir' : 'Recuperar'" color="primary" class="full-width q-mb-sm" />
     <router-link v-show="!userKey" userKey to="/login" size="sm">Voltar para Login</router-link>
   </q-form>
 </template>
