@@ -3,7 +3,7 @@ import AuthService from '@/services/auth'
 import { defineStore } from 'pinia'
 import { Cookies, Notify } from 'quasar'
 
-export const useAuthStore = defineStore('user', {
+export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: Cookies.get('token') || null
   }),
