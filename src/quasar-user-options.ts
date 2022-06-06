@@ -11,7 +11,7 @@ export default {
       accent: '#EB5723',
       light: '#eceff1'
     },
-    dark: 'auto',
+    dark: false,
     notify: {
       html: true,
       position: 'top',
