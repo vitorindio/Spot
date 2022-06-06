@@ -1,10 +1,9 @@
 import router from '@/router'
 import AuthService from '@/services/auth'
 import { defineStore } from 'pinia'
-import { Cookies } from 'quasar'
-import { Notify } from 'quasar'
+import { Cookies, Notify } from 'quasar'
 
-export const useUserLoginStore = defineStore('user', {
+export const useAuthStore = defineStore('user', {
   state: () => ({
     token: Cookies.get('token') || null
   }),
@@ -28,8 +27,8 @@ export const useUserLoginStore = defineStore('user', {
         })
     },
 
-    async logout() {
-      await AuthService.logout(this.token)
+    logout() {
+      AuthService.logout(this.token)
         .then(() => {
           this.token = null
           Cookies.remove('token')
