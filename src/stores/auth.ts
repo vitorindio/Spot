@@ -1,3 +1,4 @@
+import { IAuth } from '@/models'
 import router from '@/router'
 import AuthService from '@/services/auth'
 import { defineStore } from 'pinia'
@@ -5,7 +6,7 @@ import { Cookies, Notify } from 'quasar'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    token: Cookies.get('token') || null
+    token: Cookies.get('token') as IAuth['token']
   }),
 
   getters: {
@@ -17,7 +18,7 @@ export const useAuthStore = defineStore('auth', {
       await AuthService.login(email, password)
         .then(({ token }) => {
           this.token = token
-          Cookies.set('token', token)
+          if (token) Cookies.set('token', token)
           return router.push('/')
         })
         .catch((error) => {

@@ -12,6 +12,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useQuasar } from 'quasar'
+import { useRecordsStore } from '@/stores'
 
 const columns = [
   { name: 'name', label: 'Nome', align: 'left', field: (row: { name: string }) => row.name, sortable: true },
@@ -35,18 +36,22 @@ export default defineComponent({
   setup() {
     const $q = useQuasar()
 
-    return {
-      columns,
-      rows,
-
-      exportMethod() {
-        $q.notify({
-          message: 'Funcionalidade ainda não adicionada',
-          color: 'negative',
-          icon: 'warning'
-        })
-      }
+    function exportMethod() {
+      $q.notify({ message: 'Funcionalidade ainda não adicionada', color: 'negative', icon: 'warning' })
     }
+
+    return { columns, rows, exportMethod }
+  },
+
+  data: () => ({
+    newRows: []
+  }),
+
+  async mounted() {
+    const store = useRecordsStore()
+    await store.showAll()
+
+    console.log(store.records)
   }
 })
 </script>
